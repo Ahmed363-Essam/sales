@@ -20,4 +20,10 @@ class Admin  extends Authenticatable
     {
         return $this->hasMany(Treasuries::class,'treasuries','added_by');
     }
+
+
+    public function Sales_material()
+    {
+        return $this->hasMany(Sales_material_types::class,'sales_material_types','added_by');
+    }
 }

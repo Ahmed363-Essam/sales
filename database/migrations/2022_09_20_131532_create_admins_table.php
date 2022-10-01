@@ -24,7 +24,7 @@ class CreateAdminsTable extends Migration
             $table->string('password');
 
             $table->integer('added_by');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
             $table->integer('com_code');
 
   

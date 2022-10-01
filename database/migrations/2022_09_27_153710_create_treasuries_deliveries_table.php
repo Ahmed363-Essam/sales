@@ -23,7 +23,7 @@ class CreateTreasuriesDeliveriesTable extends Migration
 
 
             $table->unsignedBigInteger('added_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
 
             $table->foreign('added_by')->references('id')->on('admins')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('admins')->onDelete('cascade')->nullable();

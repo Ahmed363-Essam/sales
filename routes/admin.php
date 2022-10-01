@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\TreasuriesController;
 
 use App\Http\Controllers\Admin\TreasuriesDeliveryController;
-
+use App\Http\Controllers\Admin\SalesMaterialTypesController;
+use App\Http\Controllers\Admin\StoresController;
+use App\Http\Controllers\Admin\UomsController;
 use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +61,11 @@ Route::group([
 
     Route::get('/addTresuire_delivery/{id}',[TreasuriesDeliveryController::class,'addTresuire_delivery'])->name('addTresuire_delivery');
  
+    Route::resource('sales_material_types',SalesMaterialTypesController::class);
+
+    Route::resource("store",StoresController::class);
+
+    Route::resource("uoms",UomsController::class);
+
+    
 });
