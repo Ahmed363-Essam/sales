@@ -1,0 +1,96 @@
+@extends('admin.starter')
+
+@section('content')
+
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title card_title_center">بيانات الضبط العام</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+     
+        <table id="example2" class="table table-bordered table-hover">
+         
+            <tr>
+                <td class="width30">اسم الشركة</td> 
+                <td > ahmed essam</td>
+            </tr>
+
+            <tr>
+                <td class="width30">كود الشركة</td> 
+                <td > 250</td>
+            </tr>
+
+            <tr>
+                <td class="width30">حالة الشركة</td> 
+                <td >sdsd/td>
+            </tr>
+
+            <tr>
+                <td class="width30">عنوان  الشركة</td> 
+                <td >sdsd</td>
+            </tr>
+
+            <tr>
+                <td class="width30">هاتف  الشركة</td> 
+                <td > sdsd</td>
+            </tr>
+
+            <tr>
+                <td class="width30">  اسم الحساب المالي للعملاء الاب</td> 
+                <td > sdsdd</td>
+            </tr>
+            <tr>
+                <td class="width30">  اسم الحساب المالي للموردين الاب</td> 
+                <td >sdsdsd </td>
+            </tr>
+
+
+            
+            <tr>
+                <td class="width30">  رسالة التنبية اعلي الشاشة للشركة</td> 
+                <td >sdsdsdd</td>
+            </tr>
+            <tr>
+                <td class="width30">لوجو  الشركة</td> 
+                <td >
+             <div class="image">
+sdsdsddsd
+            </div>
+
+                </td>
+            </tr>
+  
+            <tr>
+                <td class="width30">  تاريخ اخر تحديث</td> 
+                <td > 
+
+sdsdsd
+
+
+
+
+
+
+
+
+
+                </td>
+            </tr> 
+           
+          </table>
+
+ 
+
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+@endsection
