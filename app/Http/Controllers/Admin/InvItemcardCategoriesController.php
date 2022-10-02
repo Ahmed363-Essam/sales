@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Uoms;
-use App\Http\Requests\CreateUomsRequest;
-use App\Http\Requests\EditUomsRequest;
+
+use App\Models\Admin\Inv_itemcard_categories;
 use Illuminate\Http\Request;
 
-class UomsController extends Controller
+class InvItemcardCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +18,11 @@ class UomsController extends Controller
     {
         //
 
-        $data = Uoms::where('com_code',auth('admin')->user()->id)->orderby('id')->paginate(PAGINATE_COUNT);
+        $data = Inv_itemcard_categories::orderby('id')->paginate(PAGINATE_COUNT);
 
 
 
-        return view('admin.inv_uom.index',compact('data'));
+        return view('admin.inv_itemcard_categories.index',compact('data'));
     }
 
     /**
@@ -35,7 +34,7 @@ class UomsController extends Controller
     {
         //
 
-        return view('admin.inv_uom.create');
+        return view('admin.inv_itemcard_categories.create');
     }
 
     /**
@@ -44,13 +43,12 @@ class UomsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUomsRequest $request)
+    public function store(Request $request)
     {
         //
 
-        Uoms::create([
+        Inv_itemcard_categories::create([
             'name'=>$request->name,
-            'is_master'=>$request->is_master,
             'added_by'=>auth('admin')->user()->id,
             'com_code'=>1,
             'date'=>now(),
@@ -59,16 +57,16 @@ class UomsController extends Controller
 
         session()->flash('success','تم اضافة الوحدة بنجاح');
 
-        return redirect()->route('uoms.index');
-    }
+        return redirect()->route('inv_itemcard_categories.index');  
+      }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Uoms  $uoms
+     * @param  \App\Models\Admin\Inv_itemcard_categories  $inv_itemcard_categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Uoms $uoms)
+    public function show(Inv_itemcard_categories $inv_itemcard_categories)
     {
         //
     }
@@ -76,33 +74,33 @@ class UomsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Uoms  $uoms
+     * @param  \App\Models\Admin\Inv_itemcard_categories  $inv_itemcard_categories
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
 
-        $data = Uoms::find($id);
+        $data = Inv_itemcard_categories::find($id);
 
     
-        return view('admin.inv_uom.edit',compact('data'));
+        return view('admin.inv_itemcard_categories.edit',compact('data'));
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\Uoms  $uoms
+     * @param  \App\Models\Admin\Inv_itemcard_categories  $inv_itemcard_categories
      * @return \Illuminate\Http\Response
      */
-    public function update(EditUomsRequest $request,$x)
+    public function update(Request $request,  $id)
     {
         try {
             
-            $Uoms = Uoms::findorfail($request->id);
-            $Uoms->update([
+            $inv_itemCard_cat = Inv_itemcard_categories::findorfail($id);
+            $inv_itemCard_cat->update([
                 'name'=>$request->name,
-                'is_master'=>$request->is_master,
                 'added_by'=>auth('admin')->user()->id,
                 'com_code'=>1,
                 'date'=>now(),
@@ -111,7 +109,7 @@ class UomsController extends Controller
             ]);
 
             session()->flash('edit', ' تم تعديل الخزنة بنجاح.');
-            return redirect()->route('uoms.index');
+            return redirect()->route('inv_itemcard_categories.index');
         } catch (\Exception $e) {
             //throw $th;
 
@@ -122,19 +120,18 @@ class UomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Uoms  $uoms
+     * @param  \App\Models\Admin\Inv_itemcard_categories  $inv_itemcard_categories
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id)
     {
-        //
-        $uomId = Uoms::findorfail($id);
+        $catId = Inv_itemcard_categories::findorfail($id);
 
-        $uomId->delete();
+        $catId->delete();
 
 
         session()->flash('delete','تم حذف الوحدة بنجاح');
-        return redirect()->route('uoms.index');
+        return redirect()->route('inv_itemcard_categories.index');
         
     }
 }

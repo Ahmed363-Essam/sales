@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TreasuriesDeliveryController;
 use App\Http\Controllers\Admin\SalesMaterialTypesController;
 use App\Http\Controllers\Admin\StoresController;
 use App\Http\Controllers\Admin\UomsController;
+use App\Http\Controllers\Admin\InvItemcardCategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,11 @@ Route::group([
     Route::resource("store",StoresController::class);
 
     Route::resource("uoms",UomsController::class);
+
+    Route::resource("inv_itemcard_categories",InvItemcardCategoriesController::class);
+
+
+    
 
     
 });

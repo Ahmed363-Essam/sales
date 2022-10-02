@@ -4,11 +4,13 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use App\Models\Admin;
-class Uoms extends Model
+class Inv_itemcard_categories extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','is_master','added_by','updated_by','com_code','date','active'];
+
+    protected $fillable = ['name','added_by','updated_by','com_code','date','active'];
 
     public function admin()
     {

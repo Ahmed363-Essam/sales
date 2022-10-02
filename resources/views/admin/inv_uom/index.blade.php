@@ -21,6 +21,32 @@
 
             <a href="{{ route('uoms.create') }}" class="btn btn-sm btn-success">اضافة جديد</a>
         </div>
+        @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('success') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    
+    @if (session()->has('edit'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('edit') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (session()->has('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ session()->get('delete') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
         <!-- /.card-header -->
         <div class="card-body">
             <div class="row">
@@ -93,7 +119,7 @@
                                                 {{ $time }}
                                                 {{ $newDateTimeType }} <br>
                                                 بواسطة
-                                                {{ $info->added_by_admin }}
+                                                {{ $info->admin->name }}
 
 
                                             </td>
@@ -111,7 +137,7 @@
                                                     {{ $time }}
                                                     {{ $newDateTimeType }} <br>
                                                     بواسطة
-                                                    {{ $data['updated_by_admin'] }}
+                                                    {{ $info->admin2->name }}
                                                 @else
                                                     لايوجد تحديث
                                                 @endif
@@ -124,8 +150,15 @@
 
                                                 <a href="{{ route('uoms.edit', $info->id) }}"
                                                     class="btn btn-sm  btn-primary">تعديل</a>
-                                                <a href="{{ route('uoms.destroy', $info->id) }}"
-                                                    class="btn btn-sm are_you_shue  btn-danger">حذف</a>
+
+                                                    <form action="{{ route('uoms.destroy', $info->id) }}"
+                                                        method="post" style="display: inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-sm are_you_shue  btn-danger">حذف</button>
+                                                    </form>
+    
 
                                             </td>
 
