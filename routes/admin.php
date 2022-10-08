@@ -12,6 +12,12 @@ use App\Http\Controllers\Admin\StoresController;
 use App\Http\Controllers\Admin\UomsController;
 use App\Http\Controllers\Admin\InvItemcardCategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+
+use App\Http\Controllers\Admin\InvItemcardController;
+use App\Http\Controllers\Admin\AccountsTypesController;
+
+use App\Http\Controllers\Admin\AccountsController;
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -25,11 +31,11 @@ use App\Http\Controllers\Admin\DashboardController;
 
 define('PAGINATE_COUNT',10);
 
-Route::get('/',function()
+/*Route::get('/',function()
 {
     return view('welcome');
 });
-
+*/
 
 
 Route::group([
@@ -70,8 +76,9 @@ Route::group([
 
     Route::resource("inv_itemcard_categories",InvItemcardCategoriesController::class);
 
+    Route::resource("itemcard",InvItemcardController::class);
 
+    Route::resource("accountTypes",AccountsTypesController::class);
     
-
-    
+    Route::resource("Accounts",AccountsController::class);
 });

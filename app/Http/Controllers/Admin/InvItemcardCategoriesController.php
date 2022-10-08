@@ -47,13 +47,24 @@ class InvItemcardCategoriesController extends Controller
     {
         //
 
+        $request->request->add([
+            'added_by'=>auth('admin')->user()->id,
+            'com_code'=>1,
+            'date'=>now()
+        ]);
+  
+        Inv_itemcard_categories::create($request->except('_token'));
+
+
+
+/*
         Inv_itemcard_categories::create([
             'name'=>$request->name,
             'added_by'=>auth('admin')->user()->id,
             'com_code'=>1,
             'date'=>now(),
             'active'=>$request->active
-        ]);
+        ]);*/
 
         session()->flash('success','تم اضافة الوحدة بنجاح');
 

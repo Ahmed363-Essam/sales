@@ -13,6 +13,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('a1', function () {
-    return 'a1a1a1a1a1';
-});
