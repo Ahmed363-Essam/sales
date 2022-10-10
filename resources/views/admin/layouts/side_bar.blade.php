@@ -99,6 +99,30 @@
                         </li>
 
 
+                        <li class="nav-item">
+                            <a href="{{ route('suppliers_cat.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+        
+                                    فئات الموردين
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="{{ route('suppliers.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+        
+                                    حسابات الموردين
+                                </p>
+                            </a>
+                        </li>
+
+                        
+
+
                     </ul>
                 </li>
 
@@ -172,6 +196,19 @@
                         </li>
 
 
+                        <li class="nav-item">
+                            <a href="{{ route('Customers.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+        
+                                    العملاء
+                                </p>
+                            </a>
+                        </li>
+
+
+
+            
         
                     </ul>
                 </li>

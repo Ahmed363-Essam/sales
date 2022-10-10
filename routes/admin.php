@@ -18,6 +18,11 @@ use App\Http\Controllers\Admin\AccountsTypesController;
 
 use App\Http\Controllers\Admin\AccountsController;
 
+use App\Http\Controllers\Admin\CustomersController;
+
+use App\Http\Controllers\Admin\SupplierCategoriesController;
+
+USE App\Http\Controllers\Admin\SupplierController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -81,4 +86,10 @@ Route::group([
     Route::resource("accountTypes",AccountsTypesController::class);
     
     Route::resource("Accounts",AccountsController::class);
+
+    Route::resource("Customers",CustomersController::class);
+
+    Route::resource("suppliers_cat",SupplierCategoriesController::class);
+    
+    Route::resource("suppliers",SupplierController::class);
 });

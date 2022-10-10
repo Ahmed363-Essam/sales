@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountsTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,35 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('customer_code');
             $table->string('name');
-            $table->unsignedBigInteger('account_type');
-            $table->foreign('account_type')->references('id')->on('accounts_types')->onDelete('cascade');
+            $table->unsignedBigInteger('account_number');
+            $table->foreign('account_number')->references('id')->on('accounts')->onDelete('cascade');
 
-            $table->integer('parent_account_number')->nullable();
-            $table->integer('account_number');
+
+            $table->integer('start_balance_status')->comment('0-balance 1-credit 2-debit');
+           
+
             $table->decimal('start_balance',10,2)->comment('دائن او مدين او متزن المدة');
             $table->decimal('current_balance',10,2)->default(0);
 
-            $table->integer('other_table_FK')->nullable();
+
+
+            $table->integer('city_id')->nullable();
+
+            $table->text('address')->nullable();
+
+
+            //$table->string('phone')->nullable();
+
+          
+
+
+
             $table->text('notes')->nullable();
-
-            $table->tinyInteger('is_parent')->default(0);
-
-            $table->integer('start_balance_status')->comment('0-balance 1-credit 2-debit');
-
-
+            
 
             $table->unsignedBigInteger('added_by');
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -44,15 +53,7 @@ class CreateAccountsTable extends Migration
             
             $table->integer('com_code');
             $table->date('date');
-            $table->boolean('is_archived')->default(0);
-
-
-
-
-
-
-
-
+            $table->boolean('active')->default(0);
 
             $table->timestamps();
         });
@@ -65,6 +66,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('customers');
     }
 }

@@ -9,7 +9,7 @@ class Accounts extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','account_type','parent_account_number','account_number','is_parent','start_balance','current_balance','other_table_FK','notes','added_by','updated_by','is_archived','com_code','date'];
+    protected $fillable = ['name','account_type','parent_account_number','parent_account_number','start_balance_status','account_number','is_parent','start_balance','current_balance','other_table_FK','notes','added_by','updated_by','is_archived','com_code','date'];
 
     public function admin()
     {

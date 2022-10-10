@@ -21,11 +21,13 @@ class settingSeeder extends Seeder
             'system_name' => 'ahmed',
             'photo' => 'ahmed.jpg',
             'active' => 1,
-            'photo' => 'ahmed',
+
             'address' => '5 شارع المجد     امام عباس العقاد',
-            'general_alert' => bcrypt(123456),
+            'general_alert' =>'اهلا و سهلا',
 
             'phone' => '01062293101',
+            'supplier_parent_account_number'=>4,
+            'customer_parent_account_number'=>9,
 
 
 

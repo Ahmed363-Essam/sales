@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\EditRequest;
+use App\Models\Admin\Accounts;
 use App\Models\Admin\AdminSettings;
 
 
@@ -75,7 +76,9 @@ class AdminSettingsController extends Controller
 
         $data = AdminSettings::where('com_code',auth('admin')->user()->com_code)->first();
 
-        return view('admin.admin_setting.edit',compact('data'));
+        $parent_accounts = Accounts::where(['is_parent'=>1 , 'com_code'=>auth('admin')->user()->com_code])->get();
+
+        return view('admin.admin_setting.edit',compact('data','parent_accounts'));
     }
 
     /**
@@ -107,9 +110,9 @@ class AdminSettingsController extends Controller
                     'phone'=>$request->phone,
                     'updated_by'=>auth('admin')->user()->id,
                     'updated_at'=>date('Y-M-D H-I-S'),
-                    'photo'=>$photo_name
-                    
-    
+                    'photo'=>$photo_name,
+                    'customer_parent_account_number'=>$request->customer_parent_account_number,                 
+                    'suppliers_parent_account_number'=>$request->suppliers_parent_account_number,  
                 ]);
 
             }
@@ -121,7 +124,8 @@ class AdminSettingsController extends Controller
                     'address'=> $request->address,
                     'phone'=>$request->phone,
                     'updated_by'=>auth('admin')->user()->id,
-                    'updated_at'=>date('Y-M-D H-I-S'),                   
+                    'updated_at'=>date('Y-M-D H-I-S'), 
+                    'customer_parent_account_number'=>$request->customer_parent_account_number                      
     
                 ]);
             }

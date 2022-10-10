@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminSettingsTable extends Migration
+class CreateSupplierCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,27 +13,22 @@ class CreateAdminSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_settings', function (Blueprint $table) {
+        Schema::create('supplier_categories', function (Blueprint $table) {
             $table->id();
 
-            $table->string('system_name');
-            $table->string('photo');
-            $table->tinyInteger('active');
-            $table->string('general_alert');
-            $table->string('address');
-            $table->string('phone');
-            $table->integer('customer_parent_account_number')->nullable();
 
-            $table->integer('supplier_parent_account_number')->nullable();
-
+            $table->string('name')->unique();
 
             $table->unsignedBigInteger('added_by');
             $table->unsignedBigInteger('updated_by')->nullable();
+
             $table->foreign('added_by')->references('id')->on('admins')->onDelete('cascade');
-            $table->foreign('updated_by')->references('id')->on('admins')->onDelete('cascade')->nullable();
-          
+            $table->foreign('updated_by')->references('id')->on('admins')->onDelete('cascade');
+
 
             $table->integer('com_code');
+            $table->date('date');
+            $table->boolean('active');
 
 
             $table->timestamps();
@@ -47,6 +42,6 @@ class CreateAdminSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_settings');
+        Schema::dropIfExists('supplier_categories');
     }
 }

@@ -23,7 +23,11 @@ class DatabaseSeeder extends Seeder
             TreasuireDeliverySeeder::class,
             UomsSeeder::class,
             InvItemCardCatSeeder::class,
-            AccountTypesSeeder::class
+            AccountTypesSeeder::class,
+            AccountSeeder::class,
+            CustomerSeeder::class,
+            SupplierCategorySeeder::class,
+            SupplierSeeder::class           
 
         ]);
 

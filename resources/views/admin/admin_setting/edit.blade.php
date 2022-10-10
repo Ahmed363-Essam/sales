@@ -31,9 +31,8 @@
                 <div class="card-body">
 
                     @if (@isset($data) && !@empty($data))
-                        <form action="{{ route('AdminSetting.update','test') }}" method="post"
-                            enctype="multipart/form-data">
-        
+                        <form action="{{ route('AdminSetting.update', 'test') }}" method="post" enctype="multipart/form-data">
+
                             {{ method_field('PUT') }}
                             @csrf
 
@@ -71,8 +70,42 @@
                             </div>
 
 
-             
-                 
+                            <div class="form-group">
+                                <label> الحساب الاب للعملاء بالشجرة المحاسبية</label>
+                                <select name="customer_parent_account_number" id="customer_parent_account_number"
+                                    class="form-control ">
+                                    <option value="">اختر الحساب </option>
+                                    @if (@isset($parent_accounts) && !@empty($parent_accounts))
+                                        @foreach ($parent_accounts as $info)
+                                            <option @if (old('customer_parent_account_number', $data['customer_parent_account_number']) == $info->account_number) selected="selected" @endif
+                                                value="{{ $info->account_number }}"> {{ $info->name }} </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('customer_parent_account_number')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+
+
+                            <div class="form-group"> 
+                                <label>    الحساب الاب للموردين بالشجرة المحاسبية</label>
+                                <select name="suppliers_parent_account_number" id="suppliers_parent_account_number" class="form-control ">
+                                  <option value="">اختر الحساب </option>
+                                  @if (@isset($parent_accounts) && !@empty($parent_accounts))
+                                 @foreach ($parent_accounts as $info )
+                                   <option @if(old('suppliers_parent_account_number')==$info->account_number) selected="selected" @endif value="{{ $info->account_number }}"> {{ $info->name }} </option>
+                                 @endforeach
+                                  @endif
+                                </select>
+                                @error('suppliers_parent_account_number')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                </div>
+
+
+
                             <div class="form-group">
                                 <label>رسالة تنبية اعلي الشاشة </label>
                                 <input name="general_alert" id="general_alert" class="form-control"
@@ -86,7 +119,8 @@
                             <div class="form-group">
                                 <label>شعار الشركة</label>
                                 <div class="image">
-                                    <img class="custom_img"  src="{{ asset('admin/upload/settings') . '/' . $data['photo'] . '/'. $data['photo'] }}"
+                                    <img class="custom_img"
+                                        src="{{ asset('admin/upload/settings') . '/' . $data['photo'] . '/' . $data['photo'] }}"
                                         alt="لوجو الشركة">
                                     <button type="button" class="btn btn-sm btn-danger" id="update_image">تغير
                                         الصورة</button>
